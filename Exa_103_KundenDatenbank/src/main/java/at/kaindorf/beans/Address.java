@@ -1,9 +1,6 @@
 package at.kaindorf.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,18 +11,24 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 
 public class Address implements Serializable {
     @Id
     @Column(name = "address_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long addresId;
     @Column(name = "street_name")
+    @NonNull
     private String streetName;
     @Column(name = "street_number")
+    @NonNull
     private int streetNumber;
     @Column(name = "postal_code")
+    @NonNull
     private String postalCode;
     @Column(name = "city")
+    @NonNull
     private String city;
 
     //Beziehungen

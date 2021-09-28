@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 
 public class Country implements Serializable {
     @Id
@@ -20,8 +20,10 @@ public class Country implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long countryId;
     @Column(name = "country_name")
+    @NonNull
     private String countryName;
     @Column(name = "country_code")
+    @NonNull
     private String countryCode;
 
     //Beziehungen

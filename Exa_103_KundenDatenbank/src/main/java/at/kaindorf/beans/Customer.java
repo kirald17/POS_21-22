@@ -1,13 +1,10 @@
 package at.kaindorf.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import at.kaindorf.json.JSONDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,16 +15,24 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@RequiredArgsConstructor
+@JsonDeserialize(using = JSONDeserializer.class)
 public class Customer implements Serializable {
     @Id
     @Column(name = "customer_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long costumerId;
+    @NonNull
     private String firstname;
+    @NonNull
     private String lastname;
+    @NonNull
     private char gender;
+    @NonNull
     private boolean active;
+    @NonNull
     private String email;
+    @NonNull
     private LocalDate since;
 
     //Beziehungen
