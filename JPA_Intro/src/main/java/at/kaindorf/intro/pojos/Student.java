@@ -10,9 +10,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity(name = "student")
+@Entity
 //Wir importieren unseren eigenen PK
 @IdClass(StudentPK.class)
+@NamedQueries({
+        @NamedQuery(name = "Student.Count", query = "SELECT COUNT(s) FROM Student s WHERE s.schoolClass.schoolClassName = '5DHIF'")
+})
 public class Student implements Serializable {
 
     /*
@@ -50,6 +53,7 @@ public class Student implements Serializable {
 
     @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true) //Wenn niemand diese Adresse mehr referenziert wird die Adresse gelösch
     @JoinColumn(name = "address")
+    @ToString.Exclude
     private Address address;
 
     public String getFullname(){
@@ -59,6 +63,7 @@ public class Student implements Serializable {
     // Bidirektional um auch vom Student auf die Klasse zugreifen zu können
     @ManyToOne
     @JoinColumn(name = "schoolClass")
+    @ToString.Exclude
     private SchoolClass schoolClass;
 
     /*

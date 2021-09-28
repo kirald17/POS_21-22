@@ -10,6 +10,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Address.GetAll", query = "SELECT a FROM Address a WHERE a.street LIKE :street"),
+        @NamedQuery(name = "Address.GetByClassname", query = "SELECT a FROM Address a WHERE a.student.schoolClass.schoolClassName = :classname")
+})
 public class Address implements Serializable {
     @Id
     @Column(name = "address_id", nullable = false)

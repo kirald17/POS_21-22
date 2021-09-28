@@ -11,7 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity(name = "school_class")
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "SchoolClass.GetByStudentName", query = "SELECT s FROM SchoolClass s JOIN s.studentList stu WHERE stu.lastname = :lastname")
+})
 
 public class SchoolClass implements Serializable {
     @Id
@@ -26,7 +29,7 @@ public class SchoolClass implements Serializable {
 
     public void addStudent(Student student){
         if(studentList.contains(student)){
-            //Wenn der Student eingefügt wird dann wird auh autmoatisch mit this hinzugefügt
+            //Wenn der Student eingefügt wird dann wird auh automatisch mit this hinzugefügt
             student.setSchoolClass(this);
             studentList.add(student);
         }

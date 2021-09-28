@@ -4,10 +4,9 @@ import at.kaindorf.intro.pojos.Address;
 import at.kaindorf.intro.pojos.SchoolClass;
 import at.kaindorf.intro.pojos.Student;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -62,6 +61,29 @@ public class Main {
             auch aus der Datenbank
          */
         em.getTransaction().commit();
+
+        // JPQL-Queries
+        /*
+            Query oder TypedQuery
+            Entity Manager -> Queries, NamedQueries, Native Queries
+            Es gibt kein SELECT *
+         */
+        TypedQuery<Student> typedQuery = em.createQuery("SELECT s FROM Student s", Student.class);
+        List<Student> students = typedQuery.getResultList();
+        students.stream().forEach(System.out::println);
+
+        TypedQuery<Address> addressTypedQuery = em.createNamedQuery("Address.GetAll", Address.class);
+        addressTypedQuery.setParameter("street", "%Str%");
+        List<Address> addresses = addressTypedQuery.getResultList();
+        addresses.stream().forEach(System.out::println);
+
+        TypedQuery<Address> addressTypedQuery2 = em.createNamedQuery("Address.GetByClassname", Address.class);
+        addressTypedQuery2.setParameter("classname", "5DHIF");
+        addresses.stream().forEach(System.out::println);
+
+        Query query = em.createNamedQuery("Student.Count");
+        Long anz = (Long) query.getSingleResult();
+        System.out.println(anz);
 
         em.close();
         emf.close();
