@@ -29,7 +29,6 @@ public class JSONDeserializer extends StdDeserializer<Customer> {
     @Override
     public Customer deserialize(JsonParser jsonParser, DeserializationContext dc) throws IOException, JsonProcessingException {
         //TODO: Create a customer object
-
         node = dc.readValue(jsonParser, JsonNode.class);
         //Create Address
         Address address = new Address(

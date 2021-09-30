@@ -1,7 +1,6 @@
 package at.kaindorf.utils;
 
-import at.kaindorf.beans.Country;
-import at.kaindorf.beans.Customer;
+import at.kaindorf.beans.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -11,9 +10,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +27,43 @@ public class InputHandler {
         importXML(): Einlesen der XML-Datei
      */
     public static List<Customer> importXML(){
+        List<Customer> customers = new ArrayList<>();
 
-        return null;
+        try {
+            JAXBContext context = JAXBContext.newInstance(XMLDummyList.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            XMLDummyList xmlDummyList = (XMLDummyList) unmarshaller.unmarshal(XML_PATH.toFile());
+            for (XMLDummy  dummy : xmlDummyList.getDummyList()) {
+                //Create Address
+                Address address = new Address(
+                        dummy.getStreetname(),
+                        Integer.parseInt(dummy.getStreetnumber()),
+                        dummy.getPostal_code(),
+                        dummy.getCity()
+                );
+                //Create Country
+                Country country = new Country(
+                        dummy.getCountry(),
+                        dummy.getCountry_code()
+                );
+                //Create Customer
+                Customer customer = new Customer(
+                        dummy.getFirstname(),
+                        dummy.getLastname(),
+                        dummy.getGender(),
+                        dummy.isActive(),
+                        dummy.getEmail(),
+                        dummy.getSince()
+                );
+
+                customers.add(customer);
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        //customers.stream().forEach(System.out::println);
+        return customers;
     }
 
     //TODO: Import data from JSON
@@ -45,13 +79,14 @@ public class InputHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        customers.stream().forEach(System.out::println);
+        //customers.stream().forEach(System.out::println);
         return customers;
     }
 
 
     public static void main(String[] args) {
-        importJSON();
+        importXML();
+
     }
 }
 
