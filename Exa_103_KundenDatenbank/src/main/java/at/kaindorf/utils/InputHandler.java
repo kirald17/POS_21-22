@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class InputHandler {
@@ -21,8 +22,9 @@ public class InputHandler {
     private static final Path XML_PATH = Paths.get(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "customers.xml");
     private static final Path JSON_PATH = Paths.get(System.getProperty("user.dir") + File.separator + "src" + File.separator +"main" + File.separator + "resources" + File.separator + "customers.json");
 
+    private static HashSet<Country> countrySet = new HashSet<>();
+    private static HashSet<Address> addressSet = new HashSet<>();
 
-    //TODO: Import data from XML
     /*
         importXML(): Einlesen der XML-Datei
      */
@@ -34,28 +36,44 @@ public class InputHandler {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             XMLDummyList xmlDummyList = (XMLDummyList) unmarshaller.unmarshal(XML_PATH.toFile());
             for (XMLDummy  dummy : xmlDummyList.getDummyList()) {
-                //Create Address
-                Address address = new Address(
-                        dummy.getStreetname(),
-                        Integer.parseInt(dummy.getStreetnumber()),
-                        dummy.getPostal_code(),
-                        dummy.getCity()
-                );
                 //Create Country
                 Country country = new Country(
                         dummy.getCountry(),
                         dummy.getCountry_code()
                 );
+                countrySet.add(country);
+                // Element aus dem Set holen
+                // addCountry ist eigentlich nur eine Referenz auf
+                Country addCountry = countrySet.stream().filter(c -> c.equals(country)).findFirst().get();
+
+                //Create Address
+                Address address = new Address(
+                        dummy.getStreetname(),
+                        Integer.parseInt(dummy.getStreetnumber()),
+                        dummy.getPostal_code(),
+                        dummy.getCity(),
+                        addCountry
+                );
+                addressSet.add(address);
+                // Element aus dem Set holen
+                // addCountry ist eigentlich nur eine Referenz auf
+                // Adresse zum Country hinzufügen
+                addCountry.getAddressList().add(address);
+                Address addAddress = addressSet.stream().filter(a -> a.equals(address)).findFirst().get();
+
                 //Create Customer
                 Customer customer = new Customer(
                         dummy.getFirstname(),
                         dummy.getLastname(),
-                        dummy.getGender(),
+                        dummy.getGender().charAt(0),
                         dummy.isActive(),
                         dummy.getEmail(),
-                        dummy.getSince()
+                        dummy.getSince(),
+                        addAddress
                 );
-
+                //Customer zur Adresse hinzufügen
+                addAddress.getCustomerList().add(customer);
+                //Customer zur Liste hinzufügen
                 customers.add(customer);
             }
         } catch (JAXBException e) {
@@ -66,7 +84,6 @@ public class InputHandler {
         return customers;
     }
 
-    //TODO: Import data from JSON
     /*
         importJSON(): Einlesen der JSON-Datei
      */
@@ -83,10 +100,6 @@ public class InputHandler {
         return customers;
     }
 
-
-    public static void main(String[] args) {
-        importXML();
-
-    }
+    // public static void main(String[] args) {}
 }
 

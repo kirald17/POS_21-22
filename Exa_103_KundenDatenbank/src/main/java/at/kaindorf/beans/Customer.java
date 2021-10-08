@@ -17,10 +17,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @JsonDeserialize(using = JSONDeserializer.class)
+@NamedQueries({
+        @NamedQuery(name = "Customer.COUNT_ALL", query = "SELECT COUNT(c) FROM customer c"),
+        @NamedQuery(name = "Customer.FIND_YEARS", query = "SELECT DISTINCT EXTRACT(YEAR FROM c.since) FROM customer c"),
+        @NamedQuery(name = "Customer.FIND_FROM_COUNTRY", query = "SELECT c FROM customer c WHERE LOWER(c.address.country.countryName) = LOWER(:country)")
+})
 public class Customer implements Serializable {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @EqualsAndHashCode.Exclude
     private Long costumerId;
     @NonNull
     private String firstname;
@@ -36,7 +42,9 @@ public class Customer implements Serializable {
     private LocalDate since;
 
     //Beziehungen
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @NonNull
+    @ToString.Exclude
     private Address address;
 
 }

@@ -25,7 +25,7 @@ public class XMLDummy {
     private String streetnumber;
     private String firstname;
     private String lastname;
-    private char gender;
+    private String gender;
     private boolean active;
     private String email;
     @XmlJavaTypeAdapter(LocalDateAdapter.class)

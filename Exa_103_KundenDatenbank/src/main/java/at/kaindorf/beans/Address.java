@@ -12,11 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-
+@NamedQueries({
+        @NamedQuery(name = "Address.COUNT_ALL", query = "SELECT COUNT(a) FROM address a")
+})
 public class Address implements Serializable {
     @Id
     @Column(name = "address_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @EqualsAndHashCode.Exclude
     private Long addresId;
     @Column(name = "street_name")
     @NonNull
@@ -32,10 +35,15 @@ public class Address implements Serializable {
     private String city;
 
     //Beziehungen
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @NonNull
+    @ToString.Exclude
     private Country country;
 
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    @NonNull
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Customer> customerList = new ArrayList<>();
 
 }
