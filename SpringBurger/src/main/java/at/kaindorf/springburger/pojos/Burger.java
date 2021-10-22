@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Burger implements Serializable {
     private String name;
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<String> ingredients = new ArrayList<>();
 
 }
