@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Burger</title>
+</head>
+<body>
+
+    <h1>Design your Spring Burger</h1>
+    <!--
+        th:object -> Gibt das Burgerobjekt automatisch an Thymeleaf weiter
+    -->
+    <form method="post" th:object="${designBurger}">
+        <div th:each="key : ${ingredient.keySet()}">
+            <div>Choose your <span th:text="${key}">TYPE</span></div>
+            <div th:each="ing : ${ingredient.get(key)}">
+                <input name="ingredients" type="checkbox" th:value="${ing.name}">
+                <span th:text="${ing.name}">INGREDIENT</span>
+            </div>
+            <br/>
+        </div>
+        <button type="submit">Submit your burger</button>
+    </form>
+
+</body>
+</html>
