@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication // Sagt das hier die Spring-Applikation startet
 @RestController // Für die REST-API; Steht damit dem REST-Service zur verfügung
+//Dadurch kann ich GET und POST Requests stellen
 
 public class SpringIntroApplication {
 
