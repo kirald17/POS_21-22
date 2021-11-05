@@ -11,6 +11,7 @@
         th:object -> Gibt das Burgerobjekt automatisch an Thymeleaf weiter
     -->
     <form method="post" th:object="${designBurger}">
+        <span th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}">Ingredient Error</span>
         <div th:each="key : ${ingredient.keySet()}">
             <div>Choose your <span th:text="${key}">TYPE</span></div>
             <div th:each="ing : ${ingredient.get(key)}">
@@ -21,6 +22,7 @@
         </div>
         <span>Give your burge a name: </span>
         <input type="text" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
         <br/>
         <button type="submit">Submit your burger</button>
     </form>
