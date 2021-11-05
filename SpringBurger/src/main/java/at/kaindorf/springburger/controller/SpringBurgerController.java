@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/*
+    @Controller: return type String --> verweist auf eine Datei --> muss im resources/templates Ordner liegen
+    @ResController: return type ein gewisses Objekt
+ */
 @Controller
 @Slf4j //Logged direkt auf die Spring-Konsole
 @RequestMapping("design")
@@ -29,7 +33,7 @@ public class SpringBurgerController {
             new Ingredient("GOUD", "Gouda", Ingredient.Type.CHEESE)
     );
 
-    @ModelAttribute
+    @ModelAttribute // Die Methode wird noch for get oder put Methode aufgerufen wird
     public void addAttributes(Model model){
         //Model ist der Transporter zwischen Controller und Thymeleaf
         Map<String, List<Ingredient>> ingredients = new HashMap<>();
@@ -48,7 +52,7 @@ public class SpringBurgerController {
     @PostMapping
     public String processBurger(@ModelAttribute("designBurger") Burger burger){
         log.info("Processing burger: " + burger.toString());
-        return "designForm";
+        return "redirect:/orders/current";
     }
 
     @GetMapping
