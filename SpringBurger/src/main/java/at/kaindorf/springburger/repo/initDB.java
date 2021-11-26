@@ -19,7 +19,7 @@ public class initDB {
         ingredientRepository.saveAll(Arrays.asList(
                 new Ingredient("120B", "120g Ground Beef", Ingredient.Type.PATTY),
                 new Ingredient("160B", "160g Ground Beef", Ingredient.Type.PATTY),
-                new Ingredient("140B", "140g Turkey", Ingredient.Type.PATTY),
+                new Ingredient("140T", "140g Turkey", Ingredient.Type.PATTY),
                 new Ingredient("TOMA", "Tomato", Ingredient.Type.VEGGIE),
                 new Ingredient("SALA", "Salad", Ingredient.Type.VEGGIE),
                 new Ingredient("ONIO", "Onions", Ingredient.Type.VEGGIE),

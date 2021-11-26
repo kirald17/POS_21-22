@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,5 +26,10 @@ public class Order implements Serializable {
     private String city;
 
     @OneToMany(mappedBy = "order")
-    private List<Burger> burgers;
+    private List<Burger> burgers = new ArrayList<>();
+
+    public void addBurger(Burger burger){
+        burger.setOrder(this);
+        burgers.add(burger);
+    }
 }

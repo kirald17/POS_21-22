@@ -53,11 +53,12 @@ public class SpringBurgerController {
 
     @PostMapping
     public String processBurger(@Valid @ModelAttribute("designBurger") Burger burger, Errors errors){
-        log.info("Processing burger: " + burger.toString());
+
         if (errors.hasErrors()){
             log.info(errors.getObjectName() + " " + errors.getAllErrors());
             return "designForm";
         }
+        log.info("Processing burger: " + burger.toString());
         burgerRepository.save(burger);
         return "redirect:/orders/current";
     }
