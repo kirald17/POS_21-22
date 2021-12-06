@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Burger Designer</title>
+</head>
+<body>
+
+    <form method="post" th:object="${designBurger}">
+        <div th:each="key : ${ingredients.keySet()}">
+            <div class="head1">Choose your <span th:text="${key}">TYPE</span></div>
+            <div th:each="ingredient : ${ingredients.get(key)}">
+                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+                <span th:text="${ingredient.name}">ingredient</span>
+            </div>
+        </div>
+        <h3>Name of your Burger: </h3>
+        <input type="text" th:field="*{name}"/>
+        <br>
+        <button>Submit Burger</button>
+
+    </form>
+
+</body>
+</html>

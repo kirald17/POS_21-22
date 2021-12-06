@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+    <form method="post" th:object="${order}" th:action="@{/orders}">
+        <h3>Deliever my Burger <span th:text="${myBurger.toString()}">BURGER</span>to</h3>
+        Name: <input type="text" th:field="*{name}">
+        <br>
+        City: <input type="text" th:field="*{city}">
+        <br>
+        Street: <input type="text" th:field="*{street}">
+
+        <button>Place Order</button>
+    </form>
+
+</body>
+</html>
