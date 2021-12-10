@@ -40,6 +40,4 @@ public class Employee implements Serializable {
     @JoinColumn(name = "dept_no")
     @ToString.Exclude
     private Department department;
-
-
 }

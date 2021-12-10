@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="departmentView.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>DepartmentView</title>
+</head>
+<body>
+
+  <h1>Employee Administration</h1>
+
+  Department:
+  <form th:action="@{/administration}" method="post">
+    <select name="deptNo" onchange="submit();">
+      <option th:each="department : ${depts}"
+              th:text="${department.getDeptName()}"
+              th:value="${department.getDeptNo()}"
+              th:selected="${department.deptName == selectedDept}">DEPARTMENT
+      </option>
+    </select>
+  </form>
+
+    <form th:action="@{/employee}" method="get">
+      <input type="submit" th:name="add" value="Add employee">
+    </form>
+
+  <table th:border="1">
+    <tr>
+      <form method="post" th:action="@{/administration/sorted}">
+        <th>Name <input type="submit" value="&duarr;"></th>
+      </form>
+
+      <th>Birthdate</th>
+      <th>Gender</th>
+      <th>Emp-No</th>
+    </tr>
+    <br/>
+      <tr th:each="emp : ${employees}">
+        <form th:action="@{/administration/} + ${emp.employeeNo}" method="post">
+          <td th:text="${emp.getLastname() + ', ' + emp.getFirstname()}"></td>
+          <td th:text="${#temporals.format(emp.getDateOfBirth(), 'dd-MM-yyyy')}"></td>
+          <td th:text="${emp.getGender()}"></td>
+          <td th:text="${emp.getEmployeeNo()}"></td>
+          <td><input type="submit" th:name="id" value="&#10006;"></td>
+        </form>
+      </tr>
+
+
+  </table>
+
+
+</body>
+</html>

@@ -37,5 +37,10 @@ public class Department implements Serializable {
     @ToString.Exclude
     private Employee deptManager;
 
-
+    // Einen Employee hinzufügen
+    public void addEmployee(Employee employee) {
+        if(!employees.contains(employee)){
+            employees.add(employee);
+        }
+    }
 }
