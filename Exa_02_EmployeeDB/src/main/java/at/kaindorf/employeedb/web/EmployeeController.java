@@ -43,7 +43,7 @@ public class EmployeeController {
         department.addEmployee(employee);
         employee.setDepartment(department);
         employeeRepository.save(employee);
-        return "forward:/administration/sorted";
+        return "forward:/administration";
         //return "forward:/administration?deptNo=" + department.getDeptNo();
     }
 

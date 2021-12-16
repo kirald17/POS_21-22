@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/administration")
-@SessionAttributes({"department", "sortOrder"}) // Gnaze Session gültig --> braucht aber ein @ModelAttribute
+@SessionAttributes({"department", "sortOrder"}) // Ganze Session gültig --> braucht aber ein @ModelAttribute
 public class DepartmentController {
 
     @Autowired
@@ -82,7 +82,9 @@ public class DepartmentController {
 
     private void updateModel(Model model, Department department, Comparator comparator){
         department = departmentRepository.findDepartmentByDeptNo(department.getDeptNo());
+        System.out.println(department.getDeptManager().toString());
         List<Employee> employees = department.getEmployees();
+        //employees.add(department.getDeptManager());
         if(comparator != null){
             employees.sort(comparator);
         }

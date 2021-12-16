@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+
+*{
+    font-family: 'Readex Pro', sans-serif;
+    color: #11151C;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+h1{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 32px;
+    text-decoration: underline;
+    color: #11151C;
+}
+
+.emp-form{
+    font-size: 16px;
+    width: 25%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #364156;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+}
+
+.line label{
+    color: white;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.line input{
+    color: white;
+    border: none;
+    background-color: #364156;
+    border-bottom: #D66853 solid 2px;
+}
+
+.line input:hover, input:active, input:focus{
+    border-collapse: collapse;
+    border: none;
+    border-bottom: #7D4E57 solid 2px;
+    outline: none;
+}
+
+.btn{
+    border-radius: 8px;
+    background-color: #7D4E57;
+    color: white;
+    padding: 4px;
+    border: none;
+    font-size: 16px;
+    margin: 8px;
+}
+
+.btn:hover, btn:focus, btn:active{
+    background-color: #D66853;
+    border: none;
+    border-collapse: collapse;
+    outline: none;
+}

@@ -1,4 +1,157 @@
-.row{
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+
+*{
+    font-family: 'Readex Pro', sans-serif;
+    color: #11151C;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+h1{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 32px;
+    text-decoration: underline;
+    color: #11151C;
+}
+
+.container{
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.functions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-bottom: #11151C solid 2px;
+}
+
+select{
+    background-color: #f7f7f7;
+}
+
+.select-dept{
     display: flex;
     flex-direction: row;
+    padding: 8px;
+    margin-bottom: 24px;
+}
+
+.select-dept span{
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 8px;
+}
+
+.select-dept select{
+    font-size: 16px;
+    border: none;
+    border-bottom: #D66853 solid 2px;
+}
+
+.select-dept select:focus, select:active{
+    outline: none;
+}
+
+.add-emp{
+    width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-emp input{
+    width: 192px;
+    border-radius: 8px;
+    background-color: #7D4E57;
+    color: white;
+    padding: 4px;
+    border: none;
+    font-size: 16px;
+}
+
+.add-emp input:hover, input:focus, input:active{
+    background-color: #364156;
+    border: none;
+    border-collapse: collapse;
+    outline: none;
+}
+
+.data{
+    width: 100%;
+    padding: 0 8px 0px 8px;
+    border: none;
+    font-size: 16px;
+    border-collapse: collapse;
+    border-radius: 4px;
+}
+
+.table-head{
+    background-color: #212D40;
+    margin-bottom: 12px;
+}
+
+.table-head input{
+    background-color: #7D4E57;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.table-head input:focus, input:hover, input:active{
+    background-color: #D66853;
+    outline: none;
+}
+
+.table-head th{
+    color: white;
+    font-weight: bold;
+}
+
+.content{
+    border: none;
+    border-collapse: collapse;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.mgr{
+    background-color: #7D4E57;
+}
+
+.content:hover{
+    background-color: #364156;
+}
+.content:hover td{
+    color: white;
+}
+
+.content input{
+    background-color: #7D4E57;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.content input:focus, input:hover, input:active{
+    background-color: #D66853;
+    outline: none;
 }

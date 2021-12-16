@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link href="departmentView.css" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{/departmentStyle.css}"/>
   <meta charset="UTF-8">
   <title>DepartmentView</title>
 </head>
@@ -9,33 +9,39 @@
 
   <h1>Employee Administration</h1>
 
-  Department:
-  <form th:action="@{/administration}" method="post">
-    <select name="deptNo" onchange="submit();">
-      <option th:each="department : ${depts}"
-              th:text="${department.getDeptName()}"
-              th:value="${department.getDeptNo()}"
-              th:selected="${department.deptName == selectedDept}">DEPARTMENT
-      </option>
-    </select>
-  </form>
+  <div class="container">
+    <div class="functions">
+      <div class="select-dept">
+        <span>Department:</span>
+        <form th:action="@{/administration}" method="post">
+          <select name="deptNo" onchange="submit();">
+            <option th:each="department : ${depts}"
+                    th:text="${department.getDeptName()}"
+                    th:value="${department.getDeptNo()}"
+                    th:selected="${department.deptName == selectedDept}">DEPARTMENT
+            </option>
+          </select>
+        </form>
+      </div>
 
-    <form th:action="@{/employee}" method="get">
-      <input type="submit" th:name="add" value="Add employee">
-    </form>
+      <div class="add-emp">
+        <form th:action="@{/employee}" method="get">
+          <input type="submit" th:name="add" value="Add employee">
+        </form>
+      </div>
+    </div>
 
-  <table th:border="1">
-    <tr>
-      <form method="post" th:action="@{/administration/sorted}">
-        <th>Name <input type="submit" value="&duarr;"></th>
-      </form>
-
-      <th>Birthdate</th>
-      <th>Gender</th>
-      <th>Emp-No</th>
-    </tr>
-    <br/>
-      <tr th:each="emp : ${employees}">
+    <table class="data">
+      <tr class="table-head">
+        <form method="post" th:action="@{/administration/sorted}">
+          <th>Name   <input type="submit" value="&duarr;"></th>
+        </form>
+        <th>Birthdate</th>
+        <th>Gender</th>
+        <th>Emp-No</th>
+        <th></th>
+      </tr>
+      <tr th:each="emp : ${employees}" th:attr="class=${emp.getEmployeeNo().equals(emp.getDepartment().getDeptManager().getEmployeeNo()) ? 'content mgr' : 'content'}">
         <form th:action="@{/administration/} + ${emp.employeeNo}" method="post">
           <td th:text="${emp.getLastname() + ', ' + emp.getFirstname()}"></td>
           <td th:text="${#temporals.format(emp.getDateOfBirth(), 'dd-MM-yyyy')}"></td>
@@ -44,10 +50,7 @@
           <td><input type="submit" th:name="id" value="&#10006;"></td>
         </form>
       </tr>
-
-
-  </table>
-
-
+    </table>
+  </div>
 </body>
 </html>
