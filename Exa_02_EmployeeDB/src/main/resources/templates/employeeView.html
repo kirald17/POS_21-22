@@ -11,20 +11,29 @@
     <div class="emp-form">
         <form th:action="@{/employee}" method="post" th:object="${employee}">
             <div class="line">
+                <label for="employeeNo">Emp-No:</label>
+                <input id="employeeNo" type="text" th:field="*{employeeNo}">
+                <span class="error-msg" th:if="${#fields.hasErrors('employeeNo')}" th:errors="*{employeeNo}">Name Error</span>
+            </div>
+            <div class="line">
                 <label for="firstname">Firstname:</label>
                 <input id="firstname" type="text" th:field="*{firstname}">
+                <span class="error-msg" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Name Error</span>
             </div>
             <div class="line">
                 <label for="lastname">Lastname:</label>
                 <input id="lastname" type="text" th:field="*{lastname}">
+                <span class="error-msg" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Name Error</span>
             </div>
             <div class="line">
                 <label for="gender">Gender:</label>
                 <input id="gender" type="text" th:field="*{gender}">
+                <span class="error-msg" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Name Error</span>
             </div>
             <div class="line">
                 <label for="birthdate">Birthdate:</label>
                 <input id="birthdate" type="text" th:field="*{dateOfBirth}">
+                <span class="error-msg" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Name Error</span>
             </div>
             <input class="btn" type="submit" value="Add employee to DB" >
         </form>

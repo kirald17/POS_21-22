@@ -133,6 +133,12 @@ select{
 
 .mgr{
     background-color: #7D4E57;
+    text-align: center;
+}
+
+.mgr td{
+    color: white;
+    font-weight: bold;
 }
 
 .content:hover{

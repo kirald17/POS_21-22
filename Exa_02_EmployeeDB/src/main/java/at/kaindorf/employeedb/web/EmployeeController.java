@@ -8,8 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,15 +38,19 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String addEmployee(@ModelAttribute("employee") Employee employee, @SessionAttribute("department") Department department){
+    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee,  Errors errors, @SessionAttribute("department") Department department){
         log.info("new employee" + employee);
         log.info("department" + department);
-        employee.setDateOfBirth(LocalDate.now());
+        if (errors.hasErrors()) {
+            log.info(errors.getObjectName() + " " + errors.getAllErrors());
+            return "employeeView";
+        }
+        System.out.println(employee.toString());
         department.addEmployee(employee);
         employee.setDepartment(department);
         employeeRepository.save(employee);
-        return "forward:/administration";
-        //return "forward:/administration?deptNo=" + department.getDeptNo();
+        //return "forward:/administration";
+        return "forward:/administration?deptNo=" + department.getDeptNo();
     }
 
 }

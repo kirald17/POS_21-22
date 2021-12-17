@@ -41,7 +41,14 @@
         <th>Emp-No</th>
         <th></th>
       </tr>
-      <tr th:each="emp : ${employees}" th:attr="class=${emp.getEmployeeNo().equals(emp.getDepartment().getDeptManager().getEmployeeNo()) ? 'content mgr' : 'content'}">
+      <tr class="mgr">
+          <td th:text="${department.getDeptManager().getFirstname() + ', ' + department.getDeptManager().getLastname()}"></td>
+          <td th:text="${#temporals.format(department.getDeptManager().getDateOfBirth())}"></td>
+          <td th:text="${department.getDeptManager().getGender()}"></td>
+          <td th:text="${department.getDeptManager().getEmployeeNo()}"></td>
+          <td>Mgr</td>
+      </tr>
+      <tr th:each="emp : ${employees}" class="content">
         <form th:action="@{/administration/} + ${emp.employeeNo}" method="post">
           <td th:text="${emp.getLastname() + ', ' + emp.getFirstname()}"></td>
           <td th:text="${#temporals.format(emp.getDateOfBirth(), 'dd-MM-yyyy')}"></td>

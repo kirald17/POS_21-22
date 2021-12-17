@@ -31,6 +31,8 @@ public class DepartmentController {
         departments.sort(Comparator.comparing(Department::getDeptName));
         //Default --> Es wird das erste Department ausgewählt
         model.addAttribute("selectedDept", departments.get(0).getDeptName());
+        model.addAttribute("department", departments.get(0));
+        model.addAttribute("employees", departments.get(0).getEmployees());
         return departments;
     }
 

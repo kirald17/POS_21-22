@@ -22,7 +22,7 @@ h1{
 
 .emp-form{
     font-size: 16px;
-    width: 25%;
+    width: 40%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -74,4 +74,10 @@ h1{
     border: none;
     border-collapse: collapse;
     outline: none;
+}
+
+.error-msg{
+    color: white;
+    font-weight: bold;
+    margin-left: 8px;
 }
