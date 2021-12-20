@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Typ</th>
+                <th>Kontonummer</th>
+                <th>kontostand</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="konto: ${konten}">
+                <td>UNDEFINED</td>
+                <td th:text="${konto.nummer}"></td>
+                <td th:text="${konto.kontostand}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
