@@ -1,4 +1,7 @@
 package at.kaindorf.bank.database;
 
-public interface SavingsAccountRepository extends org.springframework.data.jpa.repository.JpaRepository<at.kaindorf.bank.pojos.SavingsAccount, int> {
+import at.kaindorf.bank.pojos.SavingsAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SavingsAccountRepository extends JpaRepository<SavingsAccount, Integer> {
 }

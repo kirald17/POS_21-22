@@ -8,18 +8,20 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "kunde")
+@Entity(name = "customer")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Kunde {
+
+public class Customer {
     @Id
     @Column(name = "customer_id")
     private Long id;
 
     private LocalDate birthdate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column(nullable = false)
@@ -34,17 +36,17 @@ public class Kunde {
     @ManyToMany
     @JoinTable(name = "customer_account",
         joinColumns = {
-                @JoinColumn(name = "customer", referencedColumnName = "customer_id"),
+                @JoinColumn(name = "customer_id", referencedColumnName = "customer_id"),
 
         },
             inverseJoinColumns = {
-                    @JoinColumn(name = "account", referencedColumnName = "account_id")
+                    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
             }
     )
-    private List<Konto> konten;
+    private List<Account> accounts;
 
     @OneToOne
-    @JoinColumn(name = "wohnort_id")
-    private Adresse wohnort;
+    @JoinColumn(name = "address_id")
+    private Address address;
 }
 

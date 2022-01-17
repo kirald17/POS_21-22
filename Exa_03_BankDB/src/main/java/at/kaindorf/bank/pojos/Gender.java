@@ -1,2 +1,6 @@
-package at.kaindorf.bank.pojos;public enum Gender {
+package at.kaindorf.bank.pojos;
+
+
+public enum Gender {
+    M, F
 }

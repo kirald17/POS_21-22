@@ -2,14 +2,13 @@ package at.kaindorf.bank.pojos;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.math.BigDecimal;
 
 @Entity
 @DiscriminatorValue("GIRO")
-public class Girokonto extends Konto{
-    private BigDecimal kreditlimit;
+public class GiroAccount extends Account {
+    private Double overdraft;
 
-    private  BigDecimal sollzinssatz;
+    private  Float debitInterest;
 
-    private BigDecimal ueberziehungszinssatz;
+    private Float creditInterest;
 }

@@ -1,2 +1,4 @@
-package at.kaindorf.bank.web;public class CustomerDetailController {
+package at.kaindorf.bank.web;
+
+public class CustomerDetailController {
 }

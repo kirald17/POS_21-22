@@ -5,6 +5,6 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("SPAR")
-public class Sparkonto extends Account {
+public class SavingsAccount extends Account {
     private Double interest;
 }

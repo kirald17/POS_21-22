@@ -13,21 +13,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "kontoart")
-@NamedQueries({
-        @NamedQuery(name = "Konto.getByCustomerName", query = "SELECT k FROM Konto k JOIN k.kunden ku WHERE ku.nachname LIKE :nachname")
-})
-public abstract class Konto {
+@DiscriminatorColumn(name = "account_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class Account {
     @Id
-    @Column(name = "konto_id")
+    @Column(name = "account_id")
     private int id;
 
-    @Column(nullable = false)
-    private Long nummer;
+    @Column(nullable = false, name = "account_number")
+    private Long accountNumber;
 
-    private BigDecimal kontostand;
+    @Column(name = "balance")
+    private Double balance;
 
-    @ManyToMany(mappedBy = "konten")
-    private List<Customer> kunden;
+    @ManyToMany(mappedBy = "accounts")
+    private List<Customer> customerList;
 
 }

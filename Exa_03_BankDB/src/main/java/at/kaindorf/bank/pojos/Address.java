@@ -12,9 +12,9 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Adresse {
+public class Address {
     @Id
-    @Column(name = "adress_id")
+    @Column(name = "address_id")
     private int id;
     @Column(length = 10, name = "street_number")
     private String streetNumber;

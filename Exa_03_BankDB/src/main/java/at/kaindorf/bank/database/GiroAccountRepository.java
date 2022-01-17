@@ -1,4 +1,7 @@
 package at.kaindorf.bank.database;
 
-public interface GiroAccountRepository extends org.springframework.data.jpa.repository.JpaRepository<at.kaindorf.bank.pojos.GiroAccount, int> {
+import at.kaindorf.bank.pojos.GiroAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GiroAccountRepository extends JpaRepository<GiroAccount, Integer> {
 }
