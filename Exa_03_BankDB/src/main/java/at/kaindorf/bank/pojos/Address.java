@@ -14,12 +14,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Adresse {
     @Id
-    @Column(name = "adresse_id")
+    @Column(name = "adress_id")
     private int id;
-    @Column(length = 10)
-    private String hausnummer;
-    private String ort;
-    @Column(length = 10)
-    private String plz;
-    private String strasse;
+    @Column(length = 10, name = "street_number")
+    private String streetNumber;
+    private String city;
+    @Column(length = 10, name = "zip_code")
+    private String zipCode;
+    @Column(name = "streetname")
+    private String streetName;
 }

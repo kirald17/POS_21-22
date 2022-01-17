@@ -14,31 +14,31 @@ import java.util.List;
 @AllArgsConstructor
 public class Kunde {
     @Id
-    @Column(name = "kunde_id")
+    @Column(name = "customer_id")
     private Long id;
 
-    private LocalDate geburtsdatum;
+    private LocalDate birthdate;
 
     @Column(nullable = false)
-    private char geschlecht;
+    private Gender gender;
 
     @Column(nullable = false)
-    private int kundennummer;
+    private int customerNumber;
 
     @Column(length = 100)
-    private String nachname;
+    private String lastname;
 
     @Column(length = 100)
-    private String vorname;
+    private String firstname;
 
     @ManyToMany
-    @JoinTable(name = "kunde_konto",
+    @JoinTable(name = "customer_account",
         joinColumns = {
-                @JoinColumn(name = "kunde", referencedColumnName = "kunde_id"),
+                @JoinColumn(name = "customer", referencedColumnName = "customer_id"),
 
         },
             inverseJoinColumns = {
-                    @JoinColumn(name = "konto", referencedColumnName = "konto_id")
+                    @JoinColumn(name = "account", referencedColumnName = "account_id")
             }
     )
     private List<Konto> konten;

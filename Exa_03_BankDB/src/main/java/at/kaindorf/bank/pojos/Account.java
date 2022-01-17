@@ -28,6 +28,6 @@ public abstract class Konto {
     private BigDecimal kontostand;
 
     @ManyToMany(mappedBy = "konten")
-    private List<Kunde> kunden;
+    private List<Customer> kunden;
 
 }
